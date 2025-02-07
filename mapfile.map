@@ -1,0 +1,36 @@
+MAP
+    NAME "COG_WMS"
+    STATUS ON
+    SIZE 800 600
+    EXTENT -124000 -104460 119390 104700
+    UNITS METERS
+    IMAGECOLOR 255 255 255
+
+    PROJECTION
+        "init=epsg:3763"
+    END
+
+    WEB
+        METADATA
+            "wms_title"          "COG WMS Server"
+            "wms_onlineresource" "http://localhost/cgi-bin/mapserv.fcgi?map=/var/www/mapserver/mapfile.map&"
+            "wms_srs"            "EPSG:3763 EPSG:4326"
+            "wms_enable_request" "*"
+        END
+    END
+
+    LAYER
+        NAME "ortosat23_cog_centro"
+        TYPE RASTER
+        STATUS ON
+        # Use the /vsicurl/ prefix to access the remote COG without downloading it fully.
+        DATA "/vsicurl/https://ortos.dgterritorio.gov.pt/orthos/IRG/ortosat23_cog_centro_pt_irg_jpg_v2.tif"
+        METADATA
+            "wms_title" "Ortosat23 COG Centro"
+            "wms_srs"   "EPSG:3763 EPSG:4326"
+        END
+        PROJECTION
+            "init=epsg:3763"
+        END
+    END
+END
